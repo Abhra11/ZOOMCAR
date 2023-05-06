@@ -48,11 +48,11 @@ function Slider2() {
   };
 
   return (
-    <Box className="Apppp" >
+    <Box className="Apppp">
       <Slider {...settings}>
         {images.map((img, idx) => (
           <Box className={idx === imageIndex ? "slide activeSlide" : "slide"}>
-            <Link>
+            <Link to="/car">
               <Image src={img} alt={img} />
             </Link>
           </Box>

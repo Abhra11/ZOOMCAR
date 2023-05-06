@@ -19,10 +19,15 @@ import Footer from "../components/Footer";
 import { RiArrowLeftRightFill } from "react-icons/ri";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const load = useSelector((store) => store);
-  console.log(load);
+  const navigate = useNavigate();
+  const handleFind = () => {
+    navigate("/car");
+    console.log("hi");
+  };
+
   return (
     <Box bg={"#f5f5f5"}>
       <Box h={660} position="relative">
@@ -106,7 +111,7 @@ const HomePage = () => {
                     w={[330, 470, 470, 470]}
                   />
                 </Box>
-                <Box>
+                <Box onClick={handleFind}>
                   <Button
                     h={12}
                     borderRadius="0"
@@ -145,6 +150,7 @@ const HomePage = () => {
                     borderRadius="0"
                     bg={"green"}
                     w={[330, 470, 470, 470]}
+                    onClick={handleFind}
                   >
                     Find
                   </Button>
@@ -152,54 +158,6 @@ const HomePage = () => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-        </Center>
-      </Box>
-
-      <Center style={{ height: "140px" }}>
-        <Heading fontWeight="" fontSize={["lg", "3xl", "3xl", "4xl"]}>
-          CHOOSE FROM OUR WIDE RANGE OF CARS
-        </Heading>
-      </Center>
-
-      <Slider2 />
-
-      <Box h={660} position={"relative"}>
-        <Image h={"100%"} w={"100%"} src={secimg} />
-        <Center
-          w={[360, 480, 700, 900, 950]}
-          p={30}
-          style={{
-            background: "rgba(0,0,0,0.4)",
-            position: "absolute",
-            top: "60px",
-            left: "50%",
-            transform: "translate(-50%)",
-          }}
-        >
-          <Flex flexDirection={"column"}>
-            <Box>
-              <Heading
-                textAlign="center"
-                color={"white"}
-                margin="0"
-                size={["md", "lg", "xl"]}
-              >
-                Largest car sharing marketplace
-              </Heading>
-            </Box>
-            <Box>
-              <Heading
-                paddingTop="10px"
-                textAlign="center"
-                color={"white"}
-                margin="0"
-                size={["xs", "md", "md"]}
-              >
-                Sedans for short distances, SUVs for tough terrains, luxury cars
-                for surprises - we’ve got it all!
-              </Heading>
-            </Box>
-          </Flex>
         </Center>
       </Box>
 
@@ -266,7 +224,6 @@ const HomePage = () => {
           </Flex>
         </Center>
       </Box>
-
       <Box h={660} position={"relative"} marginTop={10}>
         <Image h={"100%"} w={"100%"} src={secimg} />
         <Center
@@ -300,6 +257,59 @@ const HomePage = () => {
                 size={["xs", "md", "md"]}
               >
                 24X7 Roadside assistance whenever you need
+              </Heading>
+            </Box>
+          </Flex>
+        </Center>
+      </Box>
+
+      <Center style={{ height: "140px" }}>
+        <Heading fontWeight="" fontSize={["lg", "3xl", "3xl", "4xl"]}>
+          CHOOSE FROM OUR WIDE RANGE OF CARS
+        </Heading>
+      </Center>
+
+      <Slider2 />
+
+      <Box h={660} position={"relative"}>
+        <Image
+          style={{ margin: "auto" }}
+          h={"100%"}
+          w={"100%"}
+          src="https://cdn.dribbble.com/users/1746783/screenshots/16705717/media/f83c8772c9f33de2145dd7bfce674e3b.gif"
+        />
+        <Center
+          w={[360, 480, 700, 900, 950]}
+          p={30}
+          style={{
+            background: "rgba(0,0,0,0.4)",
+            position: "absolute",
+            top: "60px",
+            left: "50%",
+            transform: "translate(-50%)",
+          }}
+        >
+          <Flex flexDirection={"column"}>
+            <Box>
+              <Heading
+                textAlign="center"
+                color={"white"}
+                margin="0"
+                size={["md", "lg", "xl"]}
+              >
+                Largest car sharing marketplace
+              </Heading>
+            </Box>
+            <Box>
+              <Heading
+                paddingTop="10px"
+                textAlign="center"
+                color={"white"}
+                margin="0"
+                size={["xs", "md", "md"]}
+              >
+                Sedans for short distances, SUVs for tough terrains, luxury cars
+                for surprises - we’ve got it all!
               </Heading>
             </Box>
           </Flex>
