@@ -15,27 +15,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authlogin } from "../redux/Auth/Auth.action";
 import { isMsgFalse } from "../redux/Auth/Auth.actionType";
+import { Loading } from "./Car-pages/Loading";
 // import { isMsgFalse } from "../redux/Auth/Auth.actionType";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const toast = useToast()
+  const toast = useToast();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const { isSuccessMsg } = useSelector((state) => state.auth);
-
+  const load = useSelector((store) => store.auth.isLoadingLoder);
+  console.log(load);
   useEffect(() => {
     if (isSuccessMsg) {
       toast({
-        title: 'Login Successful',
-        position: 'top',
-        status:'success',
+        title: "Login Successful",
+        position: "top",
+        status: "success",
         isClosable: true,
-      })
+      });
       navigate("/");
     }
     dispatch({ type: isMsgFalse });
@@ -54,49 +56,54 @@ function Login() {
     event.preventDefault();
     dispatch(authlogin(formData));
   };
-
-  return (
-    <>
-      <Box
-        shadow="xl"
-        p={"10"}
-        width="500px"
-        align="center"
-        margin={"auto"}
-        mt={"20px"}
-      >
-        <Image src="https://www.zoomcar.com/build/fb65fcc43b8bededb813e093ea2d47d3.svg" />
-        <form onSubmit={handleSubmit}>
-          <Stack>
-            <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </FormControl>
-            <Button mt={4} variantColor="teal" type="submit">
-              Login
-            </Button>
-            <Text onClick={() => navigate("/signup")}>Not a User ? SignUp</Text>
-          </Stack>
-        </form>
-      </Box>
-    </>
-  );
+  if (load) {
+    return <Loading />;
+  } else {
+    return (
+      <>
+        <Box
+          shadow="xl"
+          p={"10"}
+          width="500px"
+          align="center"
+          margin={"auto"}
+          mt={"20px"}
+        >
+          <Image src="https://www.zoomcar.com/build/fb65fcc43b8bededb813e093ea2d47d3.svg" />
+          <form onSubmit={handleSubmit}>
+            <Stack>
+              <FormControl>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </FormControl>
+              <Button mt={4} variantColor="teal" type="submit">
+                Login
+              </Button>
+              <Text onClick={() => navigate("/signup")}>
+                Not a User ? SignUp
+              </Text>
+            </Stack>
+          </form>
+        </Box>
+      </>
+    );
+  }
 }
 
 export default Login;

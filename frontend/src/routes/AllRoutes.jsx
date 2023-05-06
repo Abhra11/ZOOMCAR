@@ -10,6 +10,7 @@ import SignUp from "../components/SignUp";
 import Admin from "../pages/Admin";
 import HomePage from "../pages/HomePage";
 import MyAccount from "../pages/MyAccount";
+import { Loading } from "../components/Car-pages/Loading";
 
 const AllRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AllRoutes = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/car" element={<Car />}></Route>
+        {/* <Route path="/load" element={<Loading />}></Route> */}
         <Route
           path="/car/:car_id"
           element={

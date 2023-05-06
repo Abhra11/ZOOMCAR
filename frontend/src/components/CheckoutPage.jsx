@@ -23,6 +23,7 @@ import {
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 function CheckoutPage() {
+  window.scrollTo(0, 0);
   const { car_id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
@@ -33,12 +34,12 @@ function CheckoutPage() {
     try {
       let res = await fetch(url);
       let carData = await res.json();
-      console.log(carData);
+      // console.log(carData);
       setData(carData);
 
-      console.log("d", data);
+      // console.log("d", data);
     } catch (err) {
-      console.log("e", err.message);
+      // console.log("e", err.message);
     }
   };
 

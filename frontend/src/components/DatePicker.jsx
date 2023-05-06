@@ -19,7 +19,8 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { Link, useParams } from "react-router-dom";
 
 function DatePicker() {
-  const { car_id } = useParams()
+  window.scrollTo(0, 0);
+  const { car_id } = useParams();
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -27,28 +28,26 @@ function DatePicker() {
       key: "selection",
     },
   ]);
-  console.log(state[0].startDate, state[0].endDate)
+  // console.log(state[0].startDate, state[0].endDate);
 
   const handleSelect = (item) => {
-    const daysSelected = (
-      item.selection.endDate - item.selection.startDate
-    ) / (1000 * 60 * 60 * 24);
+    const daysSelected =
+      (item.selection.endDate - item.selection.startDate) /
+      (1000 * 60 * 60 * 24);
     // console.log("Number of days selected: ", daysSelected+1);
     setState([item.selection]);
-     const No_of_days = {}
-     No_of_days.startDate = new Date(state[0].startDate).toString()
-     No_of_days.endDate = new Date(state[0].endDate).toString()
-     No_of_days.days=daysSelected+1
-      localStorage.setItem('Days',JSON.stringify(No_of_days))
-      
+    const No_of_days = {};
+    No_of_days.startDate = new Date(state[0].startDate).toString();
+    No_of_days.endDate = new Date(state[0].endDate).toString();
+    No_of_days.days = daysSelected + 1;
+    localStorage.setItem("Days", JSON.stringify(No_of_days));
   };
 
-  
-//   const arpit = new Date(state[0].startDate)
-//   console.log(arpit)
-//   console.log(Date())
-//   console.log(state[0].startDate);
-//   console.log(state[0].endDate);
+  //   const arpit = new Date(state[0].startDate)
+  //   console.log(arpit)
+  //   console.log(Date())
+  //   console.log(state[0].startDate);
+  //   console.log(state[0].endDate);
   return (
     <div>
       <Box align="center" mt="40px">
@@ -61,7 +60,6 @@ function DatePicker() {
             months={2}
             ranges={state}
             direction="horizontal"
-            
           />
         </Box>
         <Box align="center" w="750px" mt="40px">
@@ -76,9 +74,9 @@ function DatePicker() {
         </Box>
         <Box>
           <Link to={`/checkout/${car_id}`}>
-          <Button  size="lg" color="white" bg="green" w="500px">
-            Continue
-          </Button>
+            <Button size="lg" color="white" bg="green" w="500px">
+              Continue
+            </Button>
           </Link>
         </Box>
       </Box>
